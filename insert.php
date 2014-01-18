@@ -41,7 +41,7 @@ $handle = fopen("lifedata.csv", "w");
 fputcsv($handle, array("Date", "DateTime", "Create", "Relax", "Love", "Befriend", "Health", "Happiness", "Tags", "Latitude", "Longitude"));
 
 # Create csv file for key vlaue pairs
-$keyvaluehandle = fopen("lifedata_key_value_pairs.csv", "w");
+$keyvaluehandle = fopen("tags.csv", "w");
 fputcsv($keyvaluehandle, array("Date", "Key", "Value"));
 
 # iterate over rows and dump to csvs
@@ -54,6 +54,11 @@ foreach($results as $row) {
 		foreach($tags as $tag) {
 			if (strpos($tag,':') !== false) {
 				list($key,$value) = split(":",$tag);
+			} else {
+				$key = $tag;
+				$value = 1;
+			}
+			if ($key !== "") {
 				fputcsv($keyvaluehandle, array($row['DATE'],$key,$value));
 			}
 		}

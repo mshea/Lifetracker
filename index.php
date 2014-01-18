@@ -49,28 +49,51 @@ function error(err) {
 };
 
 navigator.geolocation.getCurrentPosition(success, error, options);
+
+// Add tags on click
+$(function(){
+	$('.tag').click(function() {
+  		$('#tags').val($('#tags').val() + ' ' + $(this).text());
+  		$( "#tags" ).textinput( "refresh" );
+	});
+});
 </script>
 </head>
 <body>
 <div data-role="page">
 <div data-role="content">
 <form method="post" action="insert.php">
-<label for="create">Create <span class="activities">write, paint, dnd, code</span></label>
+<label for="create">Create <span class="activities"><a href="#" class="tag">write</a>, <a href="#" class="tag">edit</a>, <a href="#" class="tag">code</a>, <a href="#" class="tag">dnd</a>, <a href="#" class="tag">freelance</a>, <a href="#" class="tag">slyflourish</a>, <a href="#" class="tag">paint</a>, <a href="#" class="tag">dndprep</a></span></label>
+
 <input type="range" name="create" step="1" min="1" max="10">
-<label for="relax">Relax <span class="activities">read, game, tv, comics</span></label>
+<label for="relax">Relax <span class="activities"><a href="#" class="tag">read</a>, <a href="#" class="tag">videogame</a>, <a href="#" class="tag">watchtv</a>, <a href="#" class="tag">watchmovie</a>, <a href="#" class="tag">readcomic</a>, <a href="#" class="tag">busy</a></span></label>
+
 <input type="range" name="relax" step="1" min="1" max="10">
-<label for="love">Love <span class="activities">listen, help, serve, donate, mom, family</span></label>
+<label for="love">Love <span class="activities"><a href="#" class="tag">dishes</a>, <a href="#" class="tag">chores</a>, <a href="#" class="tag">listenedtoshell</a>, <a href="#" class="tag">calledmom</a>, <a href="#" class="tag">family</a>, <a href="#" class="tag">impatient</a>, <a href="#" class="tag">critical</a></span></label>
+
 <input type="range" name="love" step="1" min="1" max="10">
-<label for="befriend">Befriend <span class="activities">game, dnd, tweet, email, listen</span></label>
+<label for="befriend">Befriend <span class="activities"><a href="#" class="tag">listenedtofriend</a>, <a href="#" class="tag">emailedfriend</a>, <a href="#" class="tag">gamewithfriends</a>, <a href="#" class="tag">helpedfriend</a></span></label>
+
 <input type="range" name="befriend" step="1" min="1" max="10">
-<label for="health">Health <span class="activities">10ksteps, stairs, hike, eatwell, doctor, reflect</span></label>
+<label for="health">Health <span class="activities"><a href="#" class="tag">steps:10000</a>, <a href="#" class="tag">steps:8000</a>, <a href="#" class="tag">stairs:240</a>, <a href="#" class="tag">stairs:360</a>, <a href="#" class="tag">atewell</a>, <a href="#" class="tag">atepoorly</a>, <a href="#" class="tag">hike</a></span></label>
+
 <input type="range" name="health" step="1" min="1" max="10">
-<label for="happiness">Happiness</label>
+<label for="happiness">Happiness<span class="activities">
+<a href="#" class="tag">perfectday</a>, <a href="#" class="tag">jobstress</a></span>
+</label>
 <input type="range" name="happiness" step="1" min="1" max="10">
+
 <label for="tags">Tags</label>
-<input type="text" name="tags"> <input type="hidden" name="lat" value=""> <input type="hidden" name="long" value=""> <input type="hidden" name="date" value=""> <input type="hidden" name="datetime" value="">
+<textarea name="tags" id="tags" rows="4"></textarea>
+
+<input type="hidden" name="lat" value=""> <input type="hidden" name="long" value="">
+
+<input type="hidden" name="date" value=""> <input type="hidden" name="datetime" value="">
+
 <p><input type="submit" value="Submit">
+
 </form>
+
 <p>Geolocation: <span id="lat"></span>, <span id="long"></span></p>
 <p>Date / Time: <span id="datetime"></span></p>
 </div><!-- /content -->

@@ -16,4 +16,14 @@ Currently the script uses remote versions of Jquery, Jquery Mobile, and Moment.j
 
 This script also has no built in authentication. The intent is that only you know the URL where you host the script.
 
+## Installation
+
+You'll need to be able to host PHP applications on your webserver to run this app. You will also need to be proficient in both PHP and Javascript to modify this program to fit your needs. It's not really written to support a lot of different users, I wrote it strictly for myself but wanted to share it as well.
+
+Assuming you can do that, follow the steps below:
+
+1. Copy all the files to a web-accessible URL that executes PHP.
+2. Contemplate the goals you want to score. The defaults are "Create", "Relax", "Love", "Befriend", "Health", and "Happiness". You will have to edit these in init_db.php, index.php, and insert.php.
+3. Change your default tags in the index.php script. You only need to change the name of the tag. Jquery takes care of the rest.
+
 If you have any questions or comments, please send an email to mike@mikeshea.net.

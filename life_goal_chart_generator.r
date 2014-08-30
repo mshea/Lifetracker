@@ -21,7 +21,7 @@ smallMultiples <- function(df, dates){
 }
 
 # Output for smallMultiples using csv data.
-d <- read.csv("http://mikeshea.net/lifetracker/lifedata.csv")
+d <- read.csv("lifedata.csv")
 dates <- c(as.Date(d$Date, format="%m/%d/%Y"))
 df <- data.frame(d$Create, d$Relax, d$Love, d$Befriend, d$Health, d$Happiness)
 colnames(df) <- c("Create", "Relax", "Love", "Befriend", "Health", "Happiness")
@@ -67,7 +67,7 @@ sortTagsIntoTable <- function(df) {
 }
 
 # Output for binarySparklines with csv input
-df <- read.csv("http://mikeshea.net/lifetracker/tags.csv")
+df <- read.csv("tags.csv")
 stopwords <- c("friend")
 for (stopword in stopwords) {
 	df <- subset(df, Key!=stopword)
@@ -85,7 +85,7 @@ dev.off()
 # Map Output
 library(maps)
 library(mapdata)
-df <- read.csv("http://mikeshea.net/lifetracker/lifedata.csv")
+df <- read.csv("lifedata.csv")
 png(filename=paste(outputdir, "map.png", sep=""), height=900, width=1200, pointsize=24)
 map("state")
 points(df$Longitude, df$Latitude, pch=19, col="blue")

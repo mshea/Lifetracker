@@ -8,6 +8,8 @@ The "tags" text area can store individual words split by spaces similar to Twitt
 
 You can also store key / value pairs in the tags textarea by entering something like "steps:13405" to tie a number to an activity or something like "read:15" to track the minutes you've read that day. These key value pairs are dumped out on every submit into a file called "tags.csv". All tags are saved to this csv file. If no value is given, the default value is "1". This file lets you perform a pivot sort in Excel so you can see all the times something was tagged or count the total sum of values for a given key.
 
+The app will also capture your current location, the weather in that location, and the current S&P 500 index (as pure a measure of the current state of our pseudo-capitalist society).
+
 The script is meant to track one entry per day but can save multiple entries throughout the day.
 
 There's no way within the script to modify or add older records. I've included phpliteadmin.php to modify the database.

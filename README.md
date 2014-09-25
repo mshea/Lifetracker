@@ -6,17 +6,19 @@ The PHP application contains two pages: index.php which handles the input from a
 
 The "tags" text area can store individual words split by spaces similar to Twitter hash tags. Each of the categories has default tags you can click on. When you click on them, they are automatically added to the textarea. You should customize these tags to fit the activities you perform often enough to track.
 
-You can also store key / value pairs in the tags textarea by entering something like "steps:13405" to tie a number to an activity or something like "read:15" to track the minutes you've read that day. These key value pairs are dumped out on every submit into a file called "tags.csv". All tags are saved to this csv file. If no value is given, the default value is "1". This file lets you perform a pivot sort in Excel so you can see all the times something was tagged or count the total sum of values for a given key.
+You can also store key / value pairs in the tags textarea by entering something like "steps:13405" to tie a number to an activity or "read:15" to track the minutes you've read that day. A "thinkingabout:" tag can give you a microjournal to record your main thoughts each day. 
 
-The app will also capture your current location, the weather in that location, and the current S&P 500 index (as pure a measure of the current state of our pseudo-capitalist society).
+These key value pairs are dumped out on every submit into a file called "tags.csv". All tags are saved to this csv file. If no value is given, the default value is "1". This file lets you perform a pivot sort in Excel so you can see all the times something was tagged or count the total sum of values for a given key.
 
-The script is meant to track one entry per day but can save multiple entries throughout the day.
+The app will also captures some contextual information such as your current location, the weather in that location, and the current S&P 500 index (as pure a measure of the current state of our pseudo-capitalist society).
+
+The flexibility of the data schema makes it easy to write new forms to track specific things all of which send the same key value pairs to the back-end database and csv export. You can find an example with the sleep.php form that tracks whether you've slept well or poorly. The only required element is datetime.
 
 There's no way within the script to modify or add older records. I've included phpliteadmin.php to modify the database.
 
-Currently the script uses remote versions of Jquery, Jquery Mobile, and Moment.js. You can use local versions if you prefer.
+Currently Lifetracker uses remote versions of Jquery, Jquery Mobile, and Moment.js. You can use local versions if you prefer.
 
-This script also has no built in authentication. The intent is that only you know the URL where you host the script.
+Lifetracker also has no built in authentication. The intent is that only you know the URL where you host the script.
 
 There is also an R script to generate png and svg visualizations from the lifedata.csv file. These displays are based on the works of Edward Tufte from the Visual Display of Quantitative Information. This R script is based on the default output of this app and will require a fair bit of tweaking if you change the six primary goals.
 

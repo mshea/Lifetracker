@@ -22,12 +22,14 @@ smallMultiples <- function(df, dates){
   axis.Date(side=1, pos=c(-1), at=dateTicks, lwd="0", lwd.ticks="1", format="%d %b", col="#cccccc")
 }
 
+# Change the path below to the URL where you host your lifetracker app
 d <- read.csv("~/Desktop/lifedata.csv")
 d <- d[order(as.Date(d$datetime, format="%m/%d/%Y %I:%M:%S %p")),]
 dt <- reshape(d, idvar="datetime", timevar="key", direction="wide")
 location <- data.frame(dt['value.latitude'], dt['value.longitude'])
 dt <- data.frame(dt['datetime'],dt['value.create'], dt['value.relax'], dt['value.love'], dt['value.befriend'], dt['value.health'], dt['value.happiness'])
 names(dt) <- c("datetime","Create","Relax","Love","Befriend","Health","Happiness")
+dt <- dt[complete.cases(dt),]
 dates <- c(as.Date(dt$datetime, format="%m/%d/%Y %I:%M:%S %p"))
 dt$datetime <- NULL
 png(filename=paste(outputdir, "goals.png", sep=""), height=800, width=1200, pointsize=32)

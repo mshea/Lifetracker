@@ -18,12 +18,7 @@
 
 // Generate Date and Datetime fields
 $( document ).ready(function() {
-var date = moment().format('MM/DD/YYYY');
 var datetime = moment().format('MM/DD/YYYY h:mm:ss a');
-var spindex = $.getJSON("http://www.google.com/finance/info?q=^GSPC&callback=?", function( json ) {
-  $('#sp500').text(json[0].l_fix);
-  $('input[name=sp500]').val(json[0].l_fix);
-});
 
 // Use JQuery to insert date and datetime fields into the form and display
 $('#datetime').text(datetime);
@@ -40,19 +35,6 @@ var options = {
 // On success move geodata to the form and display
 function success(pos) {
   var crd = pos.coords;
-  var weatherurl = "http://api.openweathermap.org/data/2.5/weather?lat=" + crd.latitude + "&lon=" + crd.longitude + "&callback=?";
-  var weathercall = $.getJSON(weatherurl, function( json ) {
-    //$('#sp500').text(json[0].l_fix);
-    weatherd = (json.weather[0].main)
-    tempk = (json.main['temp'])
-    tempf = ((((tempk - 273.15)*1.8) + 32).toFixed(0)).toString();
-    $('#temp_f').text(tempf);
-    $('input[name=temp_f]').val(tempf);
-    $('#weather_desc').text(weatherd);
-    $('input[name=weather_desc]').val(weatherd);
-    // (K - 273.15)* 1.8000
-  }); 
-
   $('#latitude').text(crd.latitude);
   $('#longitude').text(crd.longitude);
   $('input[name=latitude]').val(crd.latitude);
@@ -68,7 +50,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 // Add tags on click
 $(function(){
 	$('.tag').click(function() {
-  		$('#tags').val($('#tags').val() + ' ' + $(this).text());
+  		$('#tags').val($('#tags').val() + $(this).text() + '\n,');
   		$( "#tags" ).textinput( "refresh" );
 	});
 });
@@ -78,55 +60,91 @@ $(function(){
 <div data-role="page">
 <div data-role="content">
 <form method="post" action="controller.php">
-<label for="create">Create <span class="activities"><a href="#" class="tag">write</a> <a href="#" class="tag">edit</a> <a href="#" class="tag">code:</a> <a href="#" class="tag">ranrpg</a> <a href="#" class="tag">freelance</a> <a href="#" class="tag">slyflourish</a> <a href="#" class="tag">rpgprep</a> <a href="#" class="tag">podcast</a></span></label>
-
-<input type="range" name="create" step="1" min="1" max="10">
-<label for="relax">Relax <span class="activities"><a href="#" class="tag">read:companions</a> <a href="#" class="tag">read:y</a> <a href="#" class="tag">audiobook:nos4a2</a> <a href="#" class="tag">videogame:</a> <a href="#" class="tag">videogame:hearthstone</a> <a href="#" class="tag">videogame:gw2</a> <a href="#" class="tag">tv:</a> <a href="#" class="tag">movie:</a> <a href="#" class="tag">read:</a> <a href="#" class="tag">busy</a></span></label>
-
-<input type="range" name="relax" step="1" min="1" max="10">
-<label for="love">Love <span class="activities"><a href="#" class="tag">listenedtoshell</a> <a href="#" class="tag">moviewithshell:</a> <a href="#" class="tag">tvwithshell:</a> <a href="#" class="tag">gamewithshell:</a> <a href="#" class="tag">calledmom</a> <a href="#" class="tag">impatient</a> <a href="#" class="tag">sarcastic</a> <a href="#" class="tag">critical</a></span></label>
-
-<input type="range" name="love" step="1" min="1" max="10">
-<label for="befriend">Befriend <span class="activities"><a href="#" class="tag">listenedtofriend</a> <a href="#" class="tag">emailedfriend</a> <a href="#" class="tag">gamewithfriends:</a></span></label>
-<div data-role="fieldcontain">
-<select name="friends[]" id="friends" multiple="multiple" data-native-menu="false">
-<option>Friend Contact</option>
-<option value="Friend_Name">Friend Name</option>
-<option value="Friend_Name">Friend Name</option>
-<option value="Friend_Name">Friend Name</option>
-</select>
-</div>
-<input type="range" name="befriend" step="1" min="1" max="10">
-<label for="health">Health <span class="activities"><a href="#" class="tag">10ksteps</a> <a href="#" class="tag">stairs</a> <a href="#" class="tag">atewell</a> <a href="#" class="tag">atepoorly</a></span></label>
-
-<input type="range" name="health" step="1" min="1" max="10">
-<label for="happiness">Happiness<span class="activities">
-<a href="#" class="tag">greatday</a> <a href="#" class="tag">badday:</a> <a href="#" class="tag">stress:</a> <a href="#" class="tag">thinkingabout:</a> </span>
+<label for="Create">
+<strong>Create</strong>
+<input type="range" name="Create" step="1" min="1" max="10">
+<span class="activities">
+<a href="#" class="tag">Write:</a><br>
+<a href="#" class="tag">Write:Sly Flourish</a><br>
+<a href="#" class="tag">Edit:</a><br>
+<a href="#" class="tag">Code:</a><br>
+<a href="#" class="tag">Ran RPG:D&amp;D</a><br>
+<a href="#" class="tag">Podcast</a>
+</span>
 </label>
-<input type="range" name="happiness" step="1" min="1" max="10">
+<label for="relax">
+<strong>Relax</strong><br>
+<input type="range" name="Relax" step="1" min="1" max="10">
+<span class="activities">
+<a href="#" class="tag">Read:Gauntlgrym</a><br>
+<a href="#" class="tag">Read:</a><br>
+<a href="#" class="tag">Audiobook:Peripheral</a><br>
+<a href="#" class="tag">Video Game:</a><br>
+<a href="#" class="tag">Video Game:Hearthstone</a><br>
+<a href="#" class="tag">Video Game:Neverwinter MMO</a><br>
+<a href="#" class="tag">Video Game:World of Warcraft</a><br>
+<a href="#" class="tag">Tabletop Game:</a><br>
+<a href="#" class="tag">TV:</a><br>
+<a href="#" class="tag">Movie:</a><br>
+<a href="#" class="tag">Painted Minis</a><br>
+<a href="#" class="tag">Busy</a>
+</span>
+</label>
+<label for="love">
+<strong>Love</strong>
+<input type="range" name="Love" step="1" min="1" max="10">
+<span class="activities">
+<a href="#" class="tag">Listened to Michelle</a><br>
+<a href="#" class="tag">Movie With Michelle:</a><br>
+<a href="#" class="tag">TV With Michelle:</a><br>
+<a href="#" class="tag">TV With Michelle:Deep Space 9</a><br>
+<a href="#" class="tag">Game With Michelle:</a><br>
+<a href="#" class="tag">Called Mom</a><br>
+<a href="#" class="tag">Impatient</a><br>
+<a href="#" class="tag">Sarcastic</a><br>
+<a href="#" class="tag">Critical</a>
+</span>
+</label>
+<label for="befriend">
+<strong>Befriend</strong>
+<input type="range" name="Befriend" step="1" min="1" max="10">
+<span class="activities">
+<a href="#" class="tag">Listened to Friend</a><br>
+<a href="#" class="tag">Emailed Friend</a><br>
+<a href="#" class="tag">Game With Friends:</a>
+</span>
+</label>
+<label for="health">
+<strong>Health</strong>
+<input type="range" name="Health" step="1" min="1" max="10">
+<span class="activities">
+<a href="#" class="tag">10k Steps</a><br>
+<a href="#" class="tag">Stairs</a><br>
+<a href="#" class="tag">Ate Well</a><br>
+<a href="#" class="tag">Ate Poorly</a><br>
+<a href="#" class="tag">Sick</a>
+</span>
+</label>
+<label for="happiness"><strong>Happiness</strong>
+<input type="range" name="Happiness" step="1" min="1" max="10">
+<span class="activities">
+<a href="#" class="tag">Great Day</a><br>
+<a href="#" class="tag">Bad Day:</a><br>
+<a href="#" class="tag">Stress:</a><br>
+<a href="#" class="tag">Thinking About:</a>
+</span>
+</label>
 
 <label for="tags">Tags</label>
 <textarea name="tags" id="tags" rows="4"></textarea>
-
-<input type="hidden" name="latitude" value="">
-
-<input type="hidden" name="longitude" value="">
-
-<input type="hidden" name="sp500" value="">
-
-<input type="hidden" name="temp_f" value="">
-
-<input type="hidden" name="weather_desc" value="">
-
+<input type="hidden" name="Latitude" value="">
+<input type="hidden" name="Longitude" value="">
 <input type="hidden" name="datetime" value="">
 
 <p><input type="submit" value="Submit">
 
 </form>
-<p>S&P 500 Index: <span id="sp500"></span></p>
 <p>Geolocation: <span id="latitude"></span> <span id="longitude"></span></p>
-<p>Local Weather: <span id="weather_desc"></span></p>
-<p>Local Temperature (F): <span id="temp_f"></span></p>
 <p>Date / Time: <span id="datetime"></span></p>
 </div><!-- /content -->
 </div><!-- /page -->

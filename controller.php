@@ -62,7 +62,7 @@ function submitData() {
 }
 
 function splitTags($tagcloud) {
-	$tags = explode(" ",$tagcloud);
+	$tags = explode(",",$tagcloud);
 	$tagpairs = array();
 	foreach($tags as $tag) {
 		if (trim($tag) != "") {
@@ -78,7 +78,7 @@ function splitTags($tagcloud) {
 				$tagkey = str_replace(":","",$tagkey);
 				$tagvalue = 1;
 			}
-			$tagpairs[] = array($tagkey, $tagvalue);
+			$tagpairs[] = array(trim($tagkey), trim($tagvalue));
 		}
 	}
 	return $tagpairs;
@@ -90,7 +90,7 @@ function writeCSV(){
 	$handle = fopen("lifedata.csv", "w");
 	fputcsv($handle, array("datetime", "key", "value"));
 	foreach($results as $row) {
-		fputcsv($handle, array($row['datetime'], $row['key'], $row['value']));
+		fputcsv($handle, array(trim($row['datetime']), trim($row['key']), trim($row['value'])));
 	}
 	fclose($handle);
 	echo "<p>CSV files written.";

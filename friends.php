@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width initial-scale=1">
-<title>Sleep Tracker</title>
+<title>Friend Tracker</title>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-rc.1/jquery.mobile-1.4.0-rc.1.min.css">
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.0-rc.1/jquery.mobile-1.4.0-rc.1.min.js"></script>
@@ -32,8 +32,17 @@ $('input[name=datetime]').val(datetime);
 <div data-role="page">
 <div data-role="content">
 <form method="post" action="controller.php">
-<label for="leep">Sleep</label>
-<input type="range" name="Sleep" step="1" min="1" max="10">
+<div data-role="fieldcontain">
+<select name="Friend Contact[]" id="friend" multiple="multiple" data-native-menu="false">
+<option>Friend Contact</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+
+</select>
+</div>
 <input type="hidden" name="datetime" value="">
 <p><input type="submit" value="Submit">
 </form>

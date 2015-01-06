@@ -37,8 +37,8 @@ function success(pos) {
   var crd = pos.coords;
   $('#latitude').text(crd.latitude);
   $('#longitude').text(crd.longitude);
-  $('input[name=latitude]').val(crd.latitude);
-  $('input[name=longitude]').val(crd.longitude);
+  $('input[name=Latitude]').val(crd.latitude);
+  $('input[name=Longitude]').val(crd.longitude);
 };
 
 function error(err) {
@@ -49,10 +49,10 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 
 // Add tags on click
 $(function(){
-	$('.tag').click(function() {
-  		$('#tags').val($('#tags').val() + $(this).text() + '\n,');
-  		$( "#tags" ).textinput( "refresh" );
-	});
+  $('.tag').click(function() {
+      $('#tags').val($('#tags').val() + $(this).text() + '\n,');
+      $( "#tags" ).textinput( "refresh" );
+  });
 });
 </script>
 </head>
@@ -69,6 +69,7 @@ $(function(){
 <a href="#" class="tag">Edit:</a><br>
 <a href="#" class="tag">Code:</a><br>
 <a href="#" class="tag">Ran RPG:D&amp;D</a><br>
+<a href="#" class="tag">RPG Prep</a><br>
 <a href="#" class="tag">Podcast</a>
 </span>
 </label>
@@ -76,13 +77,12 @@ $(function(){
 <strong>Relax</strong><br>
 <input type="range" name="Relax" step="1" min="1" max="10">
 <span class="activities">
-<a href="#" class="tag">Read:Gauntlgrym</a><br>
+<a href="#" class="tag">Read:Sword Art Online</a><br>
 <a href="#" class="tag">Read:</a><br>
-<a href="#" class="tag">Audiobook:Peripheral</a><br>
-<a href="#" class="tag">Video Game:</a><br>
-<a href="#" class="tag">Video Game:Hearthstone</a><br>
-<a href="#" class="tag">Video Game:Neverwinter MMO</a><br>
-<a href="#" class="tag">Video Game:World of Warcraft</a><br>
+<a href="#" class="tag">Audiobook:Revival</a><br>
+<a href="#" class="tag">Videogame:</a><br>
+<a href="#" class="tag">Videogame:Dragon Age Inquisition</a><br>
+<a href="#" class="tag">Videogame:Neverwinter MMO</a><br>
 <a href="#" class="tag">Tabletop Game:</a><br>
 <a href="#" class="tag">TV:</a><br>
 <a href="#" class="tag">Movie:</a><br>
@@ -96,6 +96,7 @@ $(function(){
 <span class="activities">
 <a href="#" class="tag">Listened to Michelle</a><br>
 <a href="#" class="tag">Movie With Michelle:</a><br>
+<a href="#" class="tag">Walked With Michelle</a><br>
 <a href="#" class="tag">TV With Michelle:</a><br>
 <a href="#" class="tag">TV With Michelle:Deep Space 9</a><br>
 <a href="#" class="tag">Game With Michelle:</a><br>
@@ -109,6 +110,16 @@ $(function(){
 <strong>Befriend</strong>
 <input type="range" name="Befriend" step="1" min="1" max="10">
 <span class="activities">
+<select name="Friend Contact[]" id="friend" multiple="multiple" data-native-menu="false">
+<option>Friend Contact</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+<option value="Friend Name">Friend Name</option>
+
+</select>
 <a href="#" class="tag">Listened to Friend</a><br>
 <a href="#" class="tag">Emailed Friend</a><br>
 <a href="#" class="tag">Game With Friends:</a>
@@ -119,10 +130,12 @@ $(function(){
 <input type="range" name="Health" step="1" min="1" max="10">
 <span class="activities">
 <a href="#" class="tag">10k Steps</a><br>
+<a href="#" class="tag">7k Steps</a><br>
 <a href="#" class="tag">Stairs</a><br>
-<a href="#" class="tag">Ate Well</a><br>
+<a href="#" class="tag">Tracked Calories</a><br>
+<a href="#" class="tag">2200 Calories</a><br>
 <a href="#" class="tag">Ate Poorly</a><br>
-<a href="#" class="tag">Sick</a>
+<a href="#" class="tag">Sick:</a>
 </span>
 </label>
 <label for="happiness"><strong>Happiness</strong>

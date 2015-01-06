@@ -88,11 +88,20 @@ function writeCSV(){
 	$DBH = new PDO("sqlite:lifetracker.sqlite3");
 	$results = $DBH->query("SELECT * FROM LIFEDATA");
 	$handle = fopen("lifedata.csv", "w");
-	fputcsv($handle, array("datetime", "key", "value"));
-	foreach($results as $row) {
-		fputcsv($handle, array(trim($row['datetime']), trim($row['key']), trim($row['value'])));
+	$totalhandle = fopen("lifedatatotal.csv", "w");
+	fputcsv($handle, array("datetime", "key", "value"));	
+	fputcsv($totalhandle, array("datetime", "key", "value"));	
+	foreach ($results as $row) {
+		fputcsv($totalhandle, array(trim($row['datetime']), trim($row['key']), trim($row['value'])));
+		$datearray = strptime($row['datetime'], '%m/%d/%Y %I:%M:%S %P');
+		if ($datearray[tm_year] + 1900 >= date("Y")) {
+			fputcsv($handle, array(trim($row['datetime']), trim($row['key']), trim($row['value'])));
+		}
 	}
+	fclose($totalhandle);
 	fclose($handle);
+
+
 	echo "<p>CSV files written.";
 }
 

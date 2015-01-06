@@ -14,9 +14,9 @@
    }
    $sql =<<<EOF
       CREATE TABLE LIFEDATA
-      (datetime TEXT,
-      key TEXT,
-      value TEXT);
+      (DATETIME TEXT,
+      KEY TEXT,
+      VALUE TEXT);
 EOF;
 
    $ret = $db->exec($sql);
